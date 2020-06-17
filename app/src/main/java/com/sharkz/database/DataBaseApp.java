@@ -19,6 +19,7 @@ public class DataBaseApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        DbHelper.init(this, GreenDAO.DBName);
+        //DbHelper.init(this, GreenDAO.DBName);
+        GreenDAO.initGreenDao(this, GreenDAO.DBName);
     }
 }
