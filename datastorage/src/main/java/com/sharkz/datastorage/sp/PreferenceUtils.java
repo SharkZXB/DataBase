@@ -19,7 +19,7 @@ public class PreferenceUtils {
     /**
      * 偏好设置 Name
      */
-    public static  String DEFAULT_PREFERENCE_NAME = "shark_preference";
+    public static String DEFAULT_PREFERENCE_NAME = "shark_preference";
 
     public static void setPreferenceName(String preferenceName) {
         DEFAULT_PREFERENCE_NAME = preferenceName;
@@ -36,6 +36,26 @@ public class PreferenceUtils {
     public static void initSP(Application application) {
         PreferenceUtils.application = application;
     }
+
+
+    // =============================================================================================
+
+
+    /**
+     * 编辑器
+     */
+    private static SharedPreferences.Editor editor;
+
+    public static SharedPreferences.Editor getEditor() {
+        if (editor == null) {
+            editor = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
+        }
+        return editor;
+    }
+
+
+    // =============================================================================================
+
 
     /**
      * 存入 String
@@ -55,7 +75,6 @@ public class PreferenceUtils {
         return editor.commit();
     }
 
-
     /**
      * 获取String
      *
@@ -66,7 +85,6 @@ public class PreferenceUtils {
         checkContext();
         return getString(key, null);
     }
-
 
     /**
      * 获取String 待默认值的
@@ -80,7 +98,6 @@ public class PreferenceUtils {
         SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         return settings.getString(key, defaultValue);
     }
-
 
     /**
      * 保存 Int
@@ -120,7 +137,6 @@ public class PreferenceUtils {
         SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         return settings.getInt(key, defaultValue);
     }
-
 
     /**
      * 保存 Long
@@ -164,7 +180,6 @@ public class PreferenceUtils {
         return settings.getLong(key, defaultValue);
     }
 
-
     /**
      * put float preferences
      *
@@ -206,7 +221,6 @@ public class PreferenceUtils {
         SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         return settings.getFloat(key, defaultValue);
     }
-
 
     /**
      * put boolean preferences
@@ -256,6 +270,9 @@ public class PreferenceUtils {
     }
 
 
+    // =============================================================================================
+
+
     /**
      * 清空全部的数据
      */
@@ -264,8 +281,12 @@ public class PreferenceUtils {
         SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.clear();
-        editor.commit();
+        editor.apply();
     }
+
+
+    // =============================================================================================
+
 
     /**
      * 检查是否初始化
