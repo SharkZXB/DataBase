@@ -19,7 +19,11 @@ public class PreferenceUtils {
     /**
      * 偏好设置 Name
      */
-    public static final String DEFAULT_PREFERENCE_NAME = "shark_preference";
+    public static  String DEFAULT_PREFERENCE_NAME = "shark_preference";
+
+    public static void setPreferenceName(String preferenceName) {
+        DEFAULT_PREFERENCE_NAME = preferenceName;
+    }
 
     /**
      * 获取上下文 这里 用 application 接受 便于 后期替换 BaseApplication.getApplication() 表达式
