@@ -1,3 +1,4 @@
+include ':encrypt'
 rootProject.name='Database'
 include ':app', ':datastorage'
 include ':greendao'
